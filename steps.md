@@ -1,4 +1,4 @@
-# 🌟 Ritinjali Donation Platform — Architecture & Deployment Guide
+#  Ritinjali Donation Platform — Architecture & Deployment Guide
 
 [![GitHub Pages](https://img.shields.io/badge/Frontend-GitHub%20Pages-222222?style=for-the-badge&logo=githubpages&logoColor=white)](https://pages.github.com/)
 [![Wix Velo](https://img.shields.io/badge/Backend-Wix%20Velo%20HTTP-0C6EFC?style=for-the-badge&logo=wix&logoColor=white)](https://www.wix.com/velo)
@@ -71,7 +71,7 @@ sequenceDiagram
 
 ---
 
-## 🔑 Step 1: Razorpay Dashboard Configuration
+##  Step 1: Razorpay Dashboard Configuration
 
 ### 1.1 Generate API Keys
 1. Log in to your [Razorpay Dashboard](https://dashboard.razorpay.com/).
@@ -91,7 +91,7 @@ Under **Settings** → **Payment Methods**, ensure the following are enabled:
 
 ---
 
-## ⚡ Step 2: Wix Backend Setup (Velo HTTP Functions)
+##  Step 2: Wix Backend Setup (Velo HTTP Functions)
 
 Wix Velo exposes serverless HTTP endpoints using a special backend file called `http-functions.js`.
 
@@ -450,7 +450,7 @@ Follow this test matrix before announcing collections:
 
 ---
 
-## ❓ Troubleshooting & FAQ
+##  Troubleshooting & FAQ
 
 <details>
 <summary><strong>Q: I get a CORS error when calling <code>/_functions/createOrder</code>?</strong></summary>
@@ -474,6 +474,6 @@ Follow this test matrix before announcing collections:
 
 ---
 
-## 📄 License & Attribution
+##  License & Attribution
 - **Organization**: [Ritinjali](https://www.ritinjali.org) (Registered Non-Profit established in 1995)
 - **License**: Released under the [MIT License](LICENSE).
