@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+</head>
+
+<body>
+    <div class="form-step-1" id="step1">
+        <div class="donation-type">
+            <button type="button" class="btn-donation-type active">One Time</button>
+            <button type="button" class="btn-donation-type">Monthly</button>
+        </div>
+        <h4 class="fw-400 fs-20 text-secondary pt-4">Select Contribution Amount</h4>
+        <div class="amount-group">
+            <button type="button" class="btn-amount" data-amount="1000">₹1000</button>
+            <button type="button" class="btn-amount active" data-amount="2500">₹2500</button>
+            <button type="button" class="btn-amount" data-amount="5000">₹5000</button>
+            <button type="button" class="btn-amount" data-amount="8000">₹8000</button>
+            <button type="button" class="btn-amount" data-amount="other">Others</button>
+        </div>
+
+        <!-- Amount Meta Box -->
+        <div class="amount-meta" id="amountMetaContainer">
+            <div id="amountMetaText">
+                Supports nutritious lunches for one child or youth for one month
+            </div>
+            <div id="otherInputWrap" class="other-input-wrap" style="display: none;">
+                <div class="other-input-row">
+                    <span class="other-currency-symbol">₹</span>
+                    <input type="number" name="other-amount" class="other-amount-input" id="input-other-amount"
+                        placeholder="Enter amount" min="100" inputmode="numeric">
+                </div>
+                <div class="other-impact-desc" id="otherImpactDesc">
+                    Supports education, livelihoods, and community development programmes
+                </div>
+            </div>
+        </div>
+
+        <!-- Citizen Radio Options -->
+        <div class="citizen-row">
+            <label class="custom-radio-wrap" for="citizenIndian">
+                <input type="radio" name="citizen" id="citizenIndian" value="indian" class="custom-radio" checked>
+                <span>Indian Citizen</span>
+            </label>
+            <label class="custom-radio-wrap" for="citizenForeign">
+                <input type="radio" name="citizen" id="citizenForeign" value="foreign" class="custom-radio">
+                <span>Foreign Citizen</span>
+            </label>
+        </div>
+
+        <!-- Checkbox Options -->
+        <div class="checkbox-group">
+            <label class="custom-checkbox-wrap" for="coverCharges">
+                <input type="checkbox" name="bearcharges" id="coverCharges" class="custom-checkbox" checked>
+                <span>I wish to bear the 3% Payment Gateway charges.</span>
+            </label>
+            <label class="custom-checkbox-wrap" for="anonymousDonor">
+                <input type="checkbox" name="anonymous" id="anonymousDonor" class="custom-checkbox">
+                <span>I don't want to be recognised on the website</span>
+            </label>
+        </div>
+
+        <!-- Legal / Tax Benefits Note -->
+        <p class="fs-12 lh-1-2em legal-note">
+            Ritinjali is a registered non-profit organisation established in 1995. Donations are eligible for tax
+            benefits as applicable under the Income Tax Act.
+        </p>
+
+        <!-- Step 1 Bottom Action Group -->
+        <div class="step1-footer">
+            <!-- Contribute Now Button -->
+            <button type="button" id="donateButton" class="btn-contribute">
+                CONTRIBUTE NOW
+            </button>
+
+            <!-- Payment Trust Badges -->
+            <div class="payment-badges">
+                <img height="44px" width="auto" alt="PhonePe"
+                    src="https://www.educategirls.ngo/wp-content/uploads/2026/06/phonepe-app-icon-transparent-background-free-png.webp">
+                <img height="44px" width="auto" alt="Google Pay"
+                    src="https://www.educategirls.ngo/wp-content/uploads/2026/06/Google-pay-acceptance-mark-icon.svg_.png">
+                <img height="28px" width="auto" style="padding:0px 6px;" alt="UPI"
+                    src="https://www.educategirls.ngo/wp-content/uploads/2026/06/UPI-Logo.png">
+                <img height="36px" width="auto" alt="Cards"
+                    src="https://www.educategirls.ngo/wp-content/uploads/2026/06/11078490.png">
+            </div>
+        </div>
+    </div>
+
+    <!-- Form Step 2 (Fill Details Below) -->
+    <div class="form-step-2" id="step2" style="display: none;">
+        <div class="details-header">
+            <button id="backBtn" class="back-btn" type="button" aria-label="Go Back">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </button>
+            <h2 class="details-title">Fill Details Below</h2>
+        </div>
+
+        <form id="indianDonorForm" class="step2-form" onsubmit="return false;">
+            <input id="pan" type="text" maxlength="10" placeholder="Indian PAN" autocomplete="off" class="form-control"
+                required>
+
+            <input id="fullName" type="text" placeholder="Full Name (as needed in donation receipt)"
+                class="form-control" required>
+
+            <textarea id="address" placeholder="Address" rows="2" class="form-control form-textarea"
+                required></textarea>
+
+            <div class="form-row-two">
+                <input id="city" type="text" placeholder="City" class="form-control" required>
+                <input id="state" type="text" placeholder="State / Province" class="form-control" required>
+            </div>
+
+            <select id="country" class="form-control form-select">
+                <option value="India" selected>India</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <div class="form-row-two">
+                <input id="phone" type="tel" placeholder="Phone" class="form-control" required>
+                <input id="email" type="email" placeholder="Email" class="form-control" required>
+            </div>
+
+            <p class="ack-text">
+                Acknowledgement of payment will be sent to this Email ID
+            </p>
+
+            <label class="custom-checkbox-wrap terms-wrap" for="termsCheck">
+                <input type="checkbox" id="termsCheck" class="custom-checkbox" required>
+                <span class="terms-text">
+                    I have read and understood the
+                    <a href="#" class="terms-link">Terms and Conditions</a>
+                    and
+                    <a href="#" class="terms-link">Privacy Policy</a>
+                    and agree to make a donation.
+                </span>
+            </label>
+
+            <div id="step2Error" class="step2-error" style="display: none;"></div>
+
+            <button id="paymentProceedBtn" class="btn-proceed" type="submit">
+                PROCEED TO PAYMENT
+            </button>
+        </form>
+    </div>
+
+    <!-- SUCCESS STEP -->
+    <div id="successStep" class="result-screen" style="display: none;">
+        <div class="result-badge success-badge">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        </div>
+        <div class="status-pill pill-success">Payment Verified • 80G Tax Benefit</div>
+        <h2 class="result-title">Thank You For Your Generosity!</h2>
+        <p class="result-subtitle">Your contribution directly supports our educational and community programmes.</p>
+
+        <div class="receipt-card">
+            <div class="receipt-amount-row">
+                <span class="receipt-amount-label">Donation Amount</span>
+                <span class="receipt-amount-val" id="successAmount">₹0</span>
+            </div>
+            <div class="receipt-divider"></div>
+            <div class="receipt-grid">
+                <div class="receipt-item">
+                    <span class="receipt-label">Payment ID</span>
+                    <span class="receipt-val mono" id="successPaymentId">—</span>
+                </div>
+                <div class="receipt-item">
+                    <span class="receipt-label">Order Ref</span>
+                    <span class="receipt-val mono" id="successOrderId">—</span>
+                </div>
+                <div class="receipt-item">
+                    <span class="receipt-label">Donor Name</span>
+                    <span class="receipt-val" id="successDonorName">—</span>
+                </div>
+                <div class="receipt-item">
+                    <span class="receipt-label">Date & Time</span>
+                    <span class="receipt-val" id="successDate">—</span>
+                </div>
+            </div>
+            <div class="receipt-notice success-notice">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span>An 80G tax receipt has been queued for <strong id="successDonorEmail">your email</strong>.</span>
+            </div>
+        </div>
+
+        <div class="result-actions">
+            <button id="printReceiptBtn" type="button" class="action-btn secondary">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                Print Receipt
+            </button>
+            <button id="shareWhatsappBtn" type="button" class="action-btn whatsapp">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+                    <path
+                        d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-5.805 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
+                </svg>
+                Share Impact
+            </button>
+        </div>
+
+        <button id="anotherBtn" class="btn-proceed" type="button" style="margin-top: 0.25rem;">
+            MAKE ANOTHER DONATION
+        </button>
+    </div>
+
+    <!-- FAILED STEP -->
+    <div id="failedStep" class="result-screen" style="display: none;">
+        <div class="result-badge failed-badge">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </div>
+        <div class="status-pill pill-failed">Transaction Incomplete</div>
+        <h2 class="result-title">Payment Could Not Be Completed</h2>
+        <p class="result-subtitle">The payment was not processed. Don't worry — your money is safe.</p>
+
+        <div class="failure-card">
+            <div class="failure-reason-box">
+                <span class="failure-reason-label">Status Details</span>
+                <span class="failure-reason-text" id="failedReasonText">Transaction was cancelled or declined by your
+                    bank.</span>
+            </div>
+            <div class="receipt-notice safe-notice">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span><strong>Bank Protection:</strong> Any debited amount will be automatically refunded within 3–5
+                    business days.</span>
+            </div>
+        </div>
+
+        <div class="failed-actions">
+            <button id="retryPaymentBtn" type="button" class="btn-proceed">
+                TRY PAYMENT AGAIN
+            </button>
+            <button id="changeDetailsBtn" type="button" class="action-btn secondary" style="width: 100%;">
+                Edit Details / Change Amount
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>
