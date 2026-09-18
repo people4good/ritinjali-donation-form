@@ -128,7 +128,7 @@ if (otherInput) {
 }
 
 // Foreign Citizen Redirection
-const FOREIGN_DONATION_URL = "https://example.com/foreign-donation";
+const FOREIGN_DONATION_URL = "https://mygoodness.benevity.org/community/cause/356-5813729896034_4037/donate";
 const foreignRadio = document.getElementById('citizenForeign');
 
 if (foreignRadio) {
