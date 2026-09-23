@@ -620,7 +620,7 @@ function renderSuccessScreen(info) {
     const whatsappBtn = document.getElementById("shareWhatsappBtn");
     if (whatsappBtn) {
         const text = encodeURIComponent(
-            `I just supported ${RAZORPAY_CONFIG.orgName}! Join me in creating an impact: ${window.location.href}`
+            `I just supported ${RAZORPAY_CONFIG.orgName}! Join me in creating an impact: https://ritinjali.org/donate`
         );
         whatsappBtn.onclick = function () {
             window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
