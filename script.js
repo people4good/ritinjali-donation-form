@@ -680,6 +680,11 @@ function autoResize() {
         window.parent.postMessage({ type: 'setIframeHeight', height: requiredHeight }, '*');
     }
 }
+document.querySelectorAll('.terms-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.stopPropagation();
+    });
+});
 
 window.addEventListener('DOMContentLoaded', autoResize);
 window.addEventListener('load', autoResize);
